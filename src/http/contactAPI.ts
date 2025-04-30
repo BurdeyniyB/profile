@@ -1,7 +1,5 @@
 
 export const sendMessage = async(data: FormData)=> {
-    console.log(import.meta.env);
-    console.log(import.meta.env.VITE_API_URL);
     for (const pair of data.entries()) {
         console.log(`${pair[0]}: ${pair[1]}`);
     }

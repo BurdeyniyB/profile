@@ -1,6 +1,6 @@
 import { useState } from "react";
 import contactCSS from "../styles/Contact.module.css"
-import { sendMessage } from "../http/contact";
+import { sendMessage } from "../http/contactAPI";
 
 const Contact = () => {
     const [firstName, setFirstName] = useState<string>('');
