@@ -1,5 +1,5 @@
 import React from "react";
-import indexCSS from "../styles/index.module.css";
+import skillCSS from "../styles/SkillSection.module.css";
 
 type SkillProps = {
     name: string;
@@ -7,9 +7,9 @@ type SkillProps = {
 }
 const Skill: React.FC<SkillProps> = ({ name, level }) => {
     return (
-        <div className={indexCSS.Skill}>
+        <div className={skillCSS.Skill}>
             <h4>{name}</h4>
-            <div className={indexCSS.SkillBar} style={{ "--skill-width": `${level}%` } as React.CSSProperties}></div>
+            <div className={skillCSS.SkillBar} style={{ "--skill-width": `${level}%` } as React.CSSProperties}></div>
         </div>
     );
 }

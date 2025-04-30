@@ -1,0 +1,255 @@
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12%;
+  width: 100%;
+  min-height: 80vh;
+  margin-bottom: 50px;
+}
+
+.headerWrapper {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: linear-gradient(0deg, rgb(82, 82, 82) 0%, rgba(16, 16, 16) 100%);
+
+  overflow: hidden;
+}
+
+.headerContent {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.headerContent h5 {
+  font-size: 22px;
+  letter-spacing: 3;
+  color: var(--primary-color);
+}
+
+.headerContent h1 {
+  font-size: 70px;
+  line-height: 70px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 30%,
+    var(--primary-color-2) 70%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.headerContent p {
+  color: #fff;
+  font-size: 18px;
+}
+
+.headerContent p span {
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.headerContent .social {
+  display: flex;
+  gap: 20px;
+}
+
+.social a {
+  text-decoration: none;
+  border: none;
+}
+
+.headerContent .social i {
+  font-size: 22px;
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.6s;
+}
+
+.headerContent .social i:hover {
+  background-color: var(--primary-color);
+  color: #1e1e1e;
+}
+
+.headerContent button {
+  height: 40px;
+  width: 140px;
+  color: var(--primary-color);
+  margin-top: 20px;
+
+  border: 1px solid var(--primary-color);
+  font-weight: 500;
+
+  background-color: #1e1e1e;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.headerContent button::after {
+  content: "Download Now";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 30%,
+    var(--primary-color-2) 70%
+  );
+
+  padding: 10px 0;
+  color: #1e1e1e;
+  font-size: 15px;
+  transform: translateX(130px);
+  transition: 0.6s;
+}
+
+.headerContent button:hover::after {
+  transform: translateX(0);
+}
+
+.headerImage {
+  position: relative;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerImage img {
+  position: relative;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  background-color: #0c0c0c;
+  z-index: 2;
+  border-radius: 50%;
+  display: block;
+}
+
+.borderAnimation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--logo-size) + 10px);
+  height: calc(var(--logo-size) + 10px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 1;
+  animation: rotateBorder 1s linear infinite;
+}
+
+.borderAnimation::before,
+.borderAnimation::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 50%,
+    var(--primary-color-2)
+  );
+}
+
+.borderAnimation::before {
+  filter: blur(50px);
+  opacity: 1;
+}
+
+@keyframes rotateBorder {
+  0% {
+    --angle: 0deg;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    --angle: 360deg;
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@media screen and (max-width: 1400px) {
+  .headerImage img {
+    width: calc(var(--logo-size) - 50px);
+    height: calc(var(--logo-size) - 50px);
+  }
+
+  .borderAnimation {
+    position: absolute;
+    width: calc(var(--logo-size) - 40px);
+    height: calc(var(--logo-size) - 40px);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .headerContent {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .headerContainer {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .headerContainer,
+  .headerContent {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .headerContent h5 {
+    font-size: 16px;
+  }
+
+  .headerContent h1 {
+    font-size: 60px;
+    line-height: 60px;
+  }
+
+  .headerContent p {
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .headerContent p span {
+    font-size: 14px;
+  }
+
+  .headerImage img {
+    width: calc(var(--logo-size) - 200px);
+    height: calc(var(--logo-size) - 200px);
+  }
+
+  .borderAnimation {
+    position: absolute;
+    width: calc(var(--logo-size) - 190px);
+    height: calc(var(--logo-size) - 190px);
+  }
+}

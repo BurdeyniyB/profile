@@ -1,0 +1,84 @@
+.about_wrapper {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: linear-gradient(0deg, rgba(16, 16, 16) 0%, rgb(82, 82, 82) 100%);
+
+  overflow: hidden;
+}
+
+.about {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.aboutImage {
+  width: 60%;
+  border: 1px solid #cfcfcf;
+  box-shadow: 10px 10px 0 #e6e6e6;
+}
+
+.aboutContent {
+  width: 40%;
+}
+
+.aboutCard {
+  padding: 10px 10px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  margin: 10px 0;
+
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.aboutCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 5px rgba(255, 255, 255, 0.25);
+}
+
+.aboutCard img {
+  height: 50px;
+  width: 50px;
+
+  margin-right: 20px;
+  filter: invert(90%);
+}
+
+.aboutCard:hover h3 {
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 1200px) {
+  .about {
+    flex-direction: column;
+  }
+
+  .aboutImage {
+    width: 100%;
+    align-items: center;
+  }
+
+  .aboutContent {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .about p {
+    font-size: 12px;
+  }
+
+  .about h3 {
+    font-size: 18px;
+  }
+}
