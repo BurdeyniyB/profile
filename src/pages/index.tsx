@@ -1,5 +1,5 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { sendMessage } from "../http/contact";
 import Home from "../components/Home";
 import About from "../components/About";
@@ -9,16 +9,6 @@ import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
 function Index() {
-
-    // const downloadPDF = () => {
-    //     const link = document.createElement("a");
-    //     link.href = encodeURI("/files/CV - Borys Burdeinyi - Full stack.pdf");
-    //     link.download = "CV - Borys Burdeinyi.pdf";
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     document.body.removeChild(link);
-    // };
-
     
     useEffect(() => {
         const sendData = async () => {
