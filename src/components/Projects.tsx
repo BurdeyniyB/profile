@@ -10,6 +10,13 @@ import "swiper/css/navigation";
 
 const projects = [
     {
+        folder: "GPT-trace/",
+        title: "GPT Trace",
+        description: "A full-featured GPT-Trace is an AI-powered crypto analytics platform built with Next.js, NestJS, TypeScript, and MongoDB that delivers real-time market insights and GPT-driven forecasts.",
+        repo: "https://github.com/BurdeyniyB/GPT-Trace",
+        images: ["img1", "img2", "img3", "img4", "img5"],
+    },
+    {
         folder: "music/",
         title: "Music Platform",
         description: "A full-featured music streaming platform built with Nest.js, Next.js, TypeScript, and MongoDB.",
@@ -53,7 +60,7 @@ const Projects = () => {
     const [isSwiperReady, setIsSwiperReady] = useState(false);
 
     useEffect(() => {
-        setIsSwiperReady(true); 
+        setIsSwiperReady(true);
     }, []);
 
     return (
