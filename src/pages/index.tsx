@@ -1,6 +1,5 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useCallback, useEffect } from "react";
-import { sendMessage } from "../http/contactAPI";
 import Home from "../components/Home";
 import About from "../components/About";
 import SkillSection from "../components/SkillSection";
