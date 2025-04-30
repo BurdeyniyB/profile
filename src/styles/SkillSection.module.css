@@ -10,24 +10,13 @@
 .skills {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 25px;
   margin-bottom: 50px;
 }
 
-.general,
-.additional {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-.webDevelopment,
-.language {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.skills > * {
+  width: 45%;
 }
 
 .Skill {
@@ -79,9 +68,54 @@ text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   height: auto;
 }
 
+.skillGroup {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.toggleHeader {
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  transition: color 0.2s;
+}
+
+.toggleHeader:hover {
+  color: #00f0ff;
+}
+
+.skillList {
+  list-style: none;
+  max-height: 0;
+  padding: 3px;
+  margin-top: 2rem;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.skillList > * {
+  margin-top: 1rem;
+}
+
+.skillList.open {
+  max-height: 1000px; 
+}
+
 @media screen and (max-width: 900px) {
   .skills {
     flex-direction: column;
+    gap: 0px;
+  }
+
+  .skillGroup{
+    width: 100%;
+  }
+
+  .toggleHeader{
+    font-size: 14px;
   }
 
   .Skill h4 {
