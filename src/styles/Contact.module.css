@@ -4,8 +4,6 @@
 
   display: flex;
 
-  background: linear-gradient(0deg, rgba(82, 82, 82) 0%, rgb(16, 16, 16) 100%);
-
   overflow: hidden;
 }
 

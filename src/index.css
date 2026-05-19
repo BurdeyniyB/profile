@@ -35,10 +35,7 @@ body {
 }
 
 body {
-  background-image: url();
-  background-size: cover;
-  background-repeat: no-repeat;
-
+  background-color: #0a0a0a;
   z-index: 1;
 }
 

@@ -3,7 +3,6 @@
   min-height: 100vh;
   display: flex;
   color: white;
-  background: linear-gradient(0deg, rgb(82, 82, 82) 0%, rgba(16, 16, 16) 100%);
   overflow: hidden;
 }
 
