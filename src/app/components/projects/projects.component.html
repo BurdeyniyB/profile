@@ -1,0 +1,36 @@
+<section id="projects" class="portfolio-container">
+  <h2 class="SectionTitle">Projects</h2>
+
+  <div class="projects">
+    <div class="project"
+         (mouseenter)="isHovered = true"
+         (mouseleave)="isHovered = false">
+      <app-project
+        [folder]="current.folder"
+        [imagesProp]="current.images"
+        [isHovered]="isHovered"
+      ></app-project>
+      <div class="project-text">
+        <h3>{{ current.title }}</h3>
+        <p>{{ current.description }}</p>
+        <div class="git-link">
+          <a [href]="current.repo" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a [href]="current.repo" target="_blank" rel="noopener noreferrer">
+            {{ current.repo }}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="prev-button" (click)="prev()">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="next-button" (click)="next()">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<div class="project-carousel">
+  <div class="carousel-track" [style.transform]="'translateX(-' + activeIndex * 100 + '%)'">
+    <div class="carousel-slide" *ngFor="let img of images; let i = index">
+      <div class="project-image" [class.hovered]="isHovered">
+        <img [src]="img" [alt]="'Slide ' + (i + 1)" />
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-btn prev-btn" (click)="prev()" *ngIf="images.length > 1">&#10094;</button>
+  <button class="carousel-btn next-btn" (click)="next()" *ngIf="images.length > 1">&#10095;</button>
+
+  <div class="carousel-indicators" *ngIf="images.length > 1">
+    <span *ngFor="let img of images; let i = index"
+          class="indicator"
+          [class.active]="i === activeIndex"
+          (click)="goTo(i)"></span>
+  </div>
+</div>

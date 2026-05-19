@@ -1,0 +1,21 @@
+<div class="carousel-wrapper">
+  <div class="carousel-track" [style.transform]="'translateX(-' + activeIndex * 100 + '%)'">
+    <div class="carousel-slide" *ngFor="let img of images">
+      <div class="carousel-image">
+        <img [src]="img" class="d-block w-100" alt="slide" />
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-btn carousel-prev" (click)="prev()">&#10094;</button>
+  <button class="carousel-btn carousel-next" (click)="next()">&#10095;</button>
+
+  <div class="carousel-indicators">
+    <span
+      *ngFor="let img of images; let i = index"
+      class="indicator"
+      [class.active]="i === activeIndex"
+      (click)="goTo(i)"
+    ></span>
+  </div>
+</div>
