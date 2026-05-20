@@ -1,104 +1,461 @@
-.portfolio-container {
+.projects-wrapper {
   width: 100%;
+}
+
+.projects-container {
   min-height: 100vh;
+  padding: 6rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* ─── Heading ─── */
+.section-heading {
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.5rem;
+}
+
+.section-heading h2 {
+  font-size: 4rem;
+  font-weight: 520;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Grid ─── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+/* ─── Card base ─── */
+.project-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.project-card:not(.is-expanded):hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.project-card.is-expanded {
+  grid-column: 1 / -1;
+  border-color: var(--accent-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ─── COLLAPSED ─── */
+.card-collapsed {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+}
+
+.card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
-.projects {
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 20px 0;
-  position: relative;
-  text-align: center;
-}
-
-.project {
-  width: 100%;
-  position: relative;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.9);
-}
-
-.project::after {
-  content: "";
-  position: absolute;
+.card-thumb img {
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, #c2c2c2, transparent);
-  top: 0;
-  left: 0;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
 }
 
-.project-text {
-  width: 80%;
+.card-collapsed:hover .card-thumb img {
+  transform: scale(1.04);
+}
+
+.thumb-overlay {
   position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgb(0, 0, 0, 0.7);
-  padding: 10px 20px;
-  z-index: 1;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, transparent 55%);
+  pointer-events: none;
 }
 
-.git-link {
+.card-info {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.card-meta h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 0.45rem;
+  letter-spacing: -0.01em;
+}
+
+.card-meta p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.38);
+  margin: 0 0 0.75rem;
+}
+
+.tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tech-tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  padding: 3px 9px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.card-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
 }
 
-.git-link a {
+.action-link {
   display: flex;
-  color: rgb(0, 0, 0, 0.7);
   align-items: center;
-  text-decoration: none;
-}
-
-.git-link i {
-  font-size: 22px;
-  height: 40px;
-  width: 40px;
-  color: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  font-size: 15px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.action-link:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.expand-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 12px;
   cursor: pointer;
-  transition: 0.6s;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 
-.git-link i:hover {
-  transform: translateY(-5px);
-  background-color: var(--primary-color-2);
-  color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+.expand-btn:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-bg);
 }
 
-.nav-buttons {
+/* ─── EXPANDED ─── */
+.card-expanded {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+}
+
+.expanded-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.expanded-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  cursor: pointer;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin-top: 15px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  z-index: 2;
 }
 
-.prev-button,
-.next-button {
-  color: rgba(255, 255, 255, 0.9);
-  background-color: transparent;
-  border: none;
-  padding: 20px;
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+.carousel-btn.prev { left: 14px; }
+.carousel-btn.next { right: 14px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 2;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
   cursor: pointer;
-  font-size: 26px;
-  transition: 0.3s;
+  transition: background 0.15s, transform 0.15s;
 }
 
-@media screen and (max-width: 900px) {
-  .project-text p { display: none; }
-  .project-text h3 { display: none; }
-  .project-text { width: 100%; top: 75%; left: 50%; }
-  .git-link i { font-size: 16px; height: 30px; width: 30px; }
-  .git-link a { font-size: 12px; height: 30px; }
-  .git-link i:hover { transform: translateY(0px); }
+.dot.active {
+  background: var(--accent);
+  transform: scale(1.35);
+}
+
+.expanded-info {
+  padding: 2.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.expanded-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.expanded-header h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.close-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.close-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.expanded-desc {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  flex: 1;
+}
+
+.expanded-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.github-btn {
+  color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+}
+
+.github-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.live-btn {
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.live-btn:hover {
+  filter: brightness(1.2);
+}
+
+/* ─── Animations ─── */
+
+/* y: partner card fade-out */
+.project-card.is-fading {
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 0.22s ease !important;
+}
+
+/* y: partner card fade-in after FLIP */
+.project-card.is-entering {
+  animation: partnerFadeIn 0.32s ease both;
+}
+
+@keyframes partnerFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* x: card expands from its original column side using clip-path */
+.project-card.is-expanded:not(.expand-from-right) {
+  animation: expandFromLeft 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.project-card.is-expanded.expand-from-right {
+  animation: expandFromRight 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes expandFromLeft {
+  from { clip-path: inset(0 50% 0 0 round 12px); }
+  to   { clip-path: inset(0 0% 0 0 round 12px);  }
+}
+
+@keyframes expandFromRight {
+  from { clip-path: inset(0 0 0 50% round 12px); }
+  to   { clip-path: inset(0 0 0 0%  round 12px); }
+}
+
+/* x: card shrinks back to its original column side (reverse of expand) */
+.project-card.is-collapsing:not(.expand-from-right) {
+  animation: collapseToLeft 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.project-card.is-collapsing.expand-from-right {
+  animation: collapseToRight 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes collapseToLeft {
+  from { clip-path: inset(0 0%  0 0   round 12px); }
+  to   { clip-path: inset(0 50% 0 0   round 12px); }
+}
+
+@keyframes collapseToRight {
+  from { clip-path: inset(0 0 0 0%   round 12px); }
+  to   { clip-path: inset(0 0 0 50%  round 12px); }
+}
+
+/* x: expanded content fade-in while card is opening */
+.card-expanded {
+  animation: expandedReveal 0.3s ease 0.1s both;
+}
+
+@keyframes expandedReveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Responsive ─── */
+@media screen and (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card.is-expanded {
+    grid-column: 1;
+  }
+
+  .card-expanded {
+    grid-template-columns: 1fr;
+  }
+
+  .expanded-carousel {
+    aspect-ratio: 16 / 9;
+  }
+
+  .expanded-info {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .projects-container {
+    padding: 3rem 1rem;
+  }
+
+  .section-heading h2 {
+    font-size: 2.5rem;
+  }
+
+  .expanded-info {
+    padding: 1.5rem;
+  }
+
+  .expanded-header h3 {
+    font-size: 1.35rem;
+  }
 }
