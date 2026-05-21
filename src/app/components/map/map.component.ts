@@ -76,12 +76,15 @@ export class MapComponent implements AfterViewInit {
   fieldHeight: number | null = null;
 
   // max animation displacement — must match moveX/moveY ranges in tryPlace
-  private readonly MAX_MOVE_X = 20;
-  private readonly MAX_MOVE_Y = 12;
+  private maxMoveX = 20;
+  private maxMoveY = 12;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
+    const isMobile = window.innerWidth < 768;
+    this.maxMoveX = isMobile ? 8 : 20;
+    this.maxMoveY = isMobile ? 5 : 12;
     const el = this.containerRef.nativeElement;
     const { items, height } = this.fitItems(el.offsetWidth, el.offsetHeight);
     this.positionedItems = items;
@@ -131,11 +134,31 @@ export class MapComponent implements AfterViewInit {
       const { hw, hh } = this.estimateHalf(item);
       let rect: Rect | null = null;
 
-      for (let t = 0; t < MAX_ATTEMPTS; t++) {
-        const candidate = this.randomRect(hw, hh, cw, ch);
-        if (!placed.some((r) => this.overlaps(r, candidate, GAP))) {
-          rect = candidate;
-          break;
+      // Try to share a row with an already-placed item (minimises container height)
+      for (const existingCy of placed.map((r) => r.cy)) {
+        for (let t = 0; t < 30; t++) {
+          const candidate: Rect = {
+            cx: hw + Math.random() * Math.max(0, cw - hw * 2),
+            cy: existingCy,
+            hw,
+            hh,
+          };
+          if (!placed.some((r) => this.overlaps(r, candidate, GAP))) {
+            rect = candidate;
+            break;
+          }
+        }
+        if (rect) break;
+      }
+
+      // Fall back to fully-random placement
+      if (!rect) {
+        for (let t = 0; t < MAX_ATTEMPTS; t++) {
+          const candidate = this.randomRect(hw, hh, cw, ch);
+          if (!placed.some((r) => this.overlaps(r, candidate, GAP))) {
+            rect = candidate;
+            break;
+          }
         }
       }
 
@@ -154,8 +177,8 @@ export class MapComponent implements AfterViewInit {
         opacity: this.computeOpacity(item.size),
         bgColor: this.hexToRgba(item.color, 0.07),
         borderColor: this.hexToRgba(item.color, 0.28),
-        moveX: `${(sign() * (6 + Math.random() * (this.MAX_MOVE_X - 6))).toFixed(1)}px`,
-        moveY: `${(sign() * (4 + Math.random() * (this.MAX_MOVE_Y - 4))).toFixed(1)}px`,
+        moveX: `${(sign() * (6 + Math.random() * (this.maxMoveX - 6))).toFixed(1)}px`,
+        moveY: `${(sign() * (4 + Math.random() * (this.maxMoveY - 4))).toFixed(1)}px`,
         animationDelay: `${+(Math.random() * 4).toFixed(2)}s`,
         animationDuration: `${+(5 + Math.random() * 4).toFixed(2)}s`,
       };
@@ -184,8 +207,8 @@ export class MapComponent implements AfterViewInit {
   // reserves the full sweep zone — prevents overlap at any animation frame
   private estimateHalf(item: MapItem): { hw: number; hh: number } {
     return {
-      hw: (item.name.length * item.size * 0.55 + 40) / 2 + this.MAX_MOVE_X,
-      hh: (item.size * 1.4 + 20) / 2 + this.MAX_MOVE_Y,
+      hw: (item.name.length * item.size * 0.55 + 40) / 2 + this.maxMoveX,
+      hh: (item.size * 1.4 + 20) / 2 + this.maxMoveY,
     };
   }
 
