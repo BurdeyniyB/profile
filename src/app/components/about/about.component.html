@@ -1,31 +1,225 @@
 <section id="about" class="about-wrapper">
-  <h2 class="SectionTitle">About</h2>
-  <div class="about">
-    <div class="about-image">
-      <app-carousel></app-carousel>
+  <div class="about-container">
+
+    <div class="section-heading">
+      <span class="section-label">About</span>
+      <h2>What I Do</h2>
     </div>
-    <div class="about-content">
-      <div class="about-card">
-        <img src="assets/images/Frontend.png" alt="Frontend" />
-        <div class="about-card-content">
-          <h3>Frontend Dev</h3>
-          <p>Create the visual and interactive parts of a website or app that users see and engage with.</p>
-        </div>
+
+    <div class="about-layout">
+      <div class="about-image">
+        <app-carousel></app-carousel>
       </div>
-      <div class="about-card">
-        <img src="assets/images/Backend.png" alt="Backend" />
-        <div class="about-card-content">
-          <h3>Backend Dev</h3>
-          <p>Build and maintain the server, database, and logic that power the application behind the scenes.</p>
-        </div>
-      </div>
-      <div class="about-card">
-        <img src="assets/images/FullStack.png" alt="Full-Stack" />
-        <div class="about-card-content">
-          <h3>Full-Stack Dev</h3>
-          <p>Handle both frontend and backend, integrating user interfaces with server-side functionality.</p>
+
+      <div class="about-content">
+        <div *ngFor="let role of roles; let i = index" class="role-card" [style.--accent]="role.accentColor"
+          [style.--accent-bg]="hexToRgba(role.accentColor, 0.08)"
+          [style.--accent-border]="hexToRgba(role.accentColor, 0.3)" [style.--i]="i"
+          (mouseenter)="hoveredRole = role.id" (mouseleave)="hoveredRole = null">
+
+          <div class="role-icon-wrap">
+            <ng-container [ngSwitch]="role.id">
+
+              <!-- Frontend: browser wireframe -->
+              <ng-container *ngSwitchCase="'frontend'">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="4" width="56" height="52" rx="4" fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.18)" stroke-width="1.2" />
+                  <rect x="2" y="4" width="56" height="11" rx="4" fill="rgba(255,255,255,0.07)" />
+                  <rect x="2" y="10" width="56" height="5" fill="rgba(255,255,255,0.07)" />
+                  <circle cx="9" cy="9.5" r="2" fill="rgba(255,100,100,0.4)" />
+                  <circle cx="15" cy="9.5" r="2" fill="rgba(255,200,100,0.4)" />
+                  <circle cx="21" cy="9.5" r="2" fill="rgba(100,220,100,0.4)" />
+                  <rect x="26" y="7" width="26" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"
+                    stroke="rgba(255,255,255,0.08)" stroke-width="0.8" />
+                  <line x1="2" y1="15" x2="58" y2="15" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" />
+                  <!-- nav items -->
+                  <rect x="6" y="19" [attr.width]="svgW('frontend', 10)" height="2" rx="1" fill="rgba(255,255,255,0.35)"
+                    style="transition:width 0.3s ease 0.05s" />
+                  <rect x="20" y="19" [attr.width]="svgW('frontend', 9)" height="2" rx="1" fill="rgba(255,255,255,0.2)"
+                    style="transition:width 0.3s ease 0.1s" />
+                  <rect x="33" y="19" [attr.width]="svgW('frontend', 11)" height="2" rx="1" fill="rgba(255,255,255,0.2)"
+                    style="transition:width 0.3s ease 0.15s" />
+                  <!-- hero heading -->
+                  <rect x="6" y="24" [attr.width]="svgW('frontend', 38)" height="4" rx="1.5"
+                    fill="rgba(255,255,255,0.32)" style="transition:width 0.4s ease 0.12s" />
+                  <rect x="6" y="31" [attr.width]="svgW('frontend', 28)" height="2.5" rx="1"
+                    fill="rgba(255,255,255,0.18)" style="transition:width 0.4s ease 0.2s" />
+                  <!-- cta button -->
+                  <rect x="6" y="36" [attr.width]="svgW('frontend', 20)" height="7" rx="3"
+                    [attr.fill]="svgFill('frontend','rgba(255,255,255,0.2)','rgba(255,255,255,0.07)')"
+                    style="transition:width 0.4s ease 0.28s, fill 0.3s" />
+                  <!-- card row -->
+                  <rect x="6" y="47" width="14" height="5" rx="2" fill="rgba(255,255,255,0.06)"
+                    stroke="rgba(255,255,255,0.09)" stroke-width="0.8" />
+                  <rect x="23" y="47" width="14" height="5" rx="2" fill="rgba(255,255,255,0.06)"
+                    stroke="rgba(255,255,255,0.09)" stroke-width="0.8" />
+                  <rect x="40" y="47" width="14" height="5" rx="2" fill="rgba(255,255,255,0.06)"
+                    stroke="rgba(255,255,255,0.09)" stroke-width="0.8" />
+                </svg>
+              </ng-container>
+
+              <!-- Backend: server rack -->
+              <ng-container *ngSwitchCase="'backend'">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="7" y="3" width="46" height="54" rx="4" fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.15)" stroke-width="1.2" />
+                  <!-- unit 1 -->
+                  <rect x="10" y="7" width="40" height="14" rx="2" fill="rgba(255,255,255,0.06)"
+                    stroke="rgba(255,255,255,0.1)" stroke-width="0.8" />
+                  <circle cx="16" cy="14" r="2"
+                    [attr.fill]="svgFill('backend','rgba(100,220,100,0.9)','rgba(100,220,100,0.2)')"
+                    style="transition:fill 0.3s ease 0.4s" />
+                  <rect x="22" y="12" [attr.width]="svgW('backend', 22)" height="2.5" rx="1"
+                    fill="rgba(255,255,255,0.3)" style="transition:width 0.4s ease 0.1s" />
+                  <rect x="22" y="16" [attr.width]="svgW('backend', 15)" height="2" rx="1" fill="rgba(255,255,255,0.18)"
+                    style="transition:width 0.4s ease 0.18s" />
+                  <!-- unit 2 -->
+                  <rect x="10" y="24" width="40" height="14" rx="2" fill="rgba(255,255,255,0.06)"
+                    stroke="rgba(255,255,255,0.1)" stroke-width="0.8" />
+                  <circle cx="16" cy="31" r="2"
+                    [attr.fill]="svgFill('backend','rgba(100,150,255,0.9)','rgba(100,150,255,0.2)')"
+                    style="transition:fill 0.3s ease 0.5s" />
+                  <rect x="22" y="29" [attr.width]="svgW('backend', 18)" height="2.5" rx="1"
+                    fill="rgba(255,255,255,0.3)" style="transition:width 0.4s ease 0.2s" />
+                  <rect x="22" y="33" [attr.width]="svgW('backend', 12)" height="2" rx="1" fill="rgba(255,255,255,0.18)"
+                    style="transition:width 0.4s ease 0.28s" />
+                  <!-- unit 3 -->
+                  <rect x="10" y="41" width="40" height="14" rx="2" fill="rgba(255,255,255,0.06)"
+                    stroke="rgba(255,255,255,0.1)" stroke-width="0.8" />
+                  <circle cx="16" cy="48" r="2"
+                    [attr.fill]="svgFill('backend','rgba(255,180,50,0.9)','rgba(255,180,50,0.2)')"
+                    style="transition:fill 0.3s ease 0.6s" />
+                  <rect x="22" y="46" [attr.width]="svgW('backend', 20)" height="2.5" rx="1"
+                    fill="rgba(255,255,255,0.3)" style="transition:width 0.4s ease 0.3s" />
+                  <rect x="22" y="50" [attr.width]="svgW('backend', 14)" height="2" rx="1" fill="rgba(255,255,255,0.18)"
+                    style="transition:width 0.4s ease 0.38s" />
+                </svg>
+              </ng-container>
+
+              <!-- Full-Stack: browser + server + bidirectional arrow -->
+              <ng-container *ngSwitchCase="'fullstack'">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- left browser -->
+                  <rect x="1" y="16" width="24" height="24" rx="3" fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.18)" stroke-width="1.2" />
+                  <rect x="1" y="16" width="24" height="8" rx="3" fill="rgba(255,255,255,0.07)" />
+                  <rect x="1" y="21" width="24" height="3" fill="rgba(255,255,255,0.07)" />
+                  <circle cx="6" cy="20" r="1.5" fill="rgba(255,100,100,0.4)" />
+                  <circle cx="10" cy="20" r="1.5" fill="rgba(255,200,100,0.4)" />
+                  <circle cx="14" cy="20" r="1.5" fill="rgba(100,220,100,0.4)" />
+                  <rect x="3" y="27" [attr.width]="svgW('fullstack', 16)" height="2" rx="1" fill="rgba(255,255,255,0.3)"
+                    style="transition:width 0.35s ease 0.1s" />
+                  <rect x="3" y="31" [attr.width]="svgW('fullstack', 12)" height="2" rx="1" fill="rgba(255,255,255,0.2)"
+                    style="transition:width 0.35s ease 0.18s" />
+                  <rect x="3" y="35" [attr.width]="svgW('fullstack', 14)" height="2" rx="1"
+                    fill="rgba(255,255,255,0.15)" style="transition:width 0.35s ease 0.26s" />
+                  <rect x="5" y="45" width="14" height="2" rx="1" fill="rgba(255,255,255,0.12)" />
+                  <!-- arrow → -->
+                  <line x1="27" y1="26" x2="33" y2="26" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('fullstack')"
+                    style="transition:stroke-dashoffset 0.3s ease 0.3s" />
+                  <polyline points="31,23.5 33.5,26 31,28.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round" [style.opacity]="svgOpacity('fullstack')"
+                    style="transition:opacity 0.25s ease 0.4s" />
+                  <!-- arrow ← -->
+                  <line x1="33" y1="32" x2="27" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('fullstack')"
+                    style="transition:stroke-dashoffset 0.3s ease 0.35s" />
+                  <polyline points="29,29.5 26.5,32 29,34.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round" [style.opacity]="svgOpacity('fullstack')"
+                    style="transition:opacity 0.25s ease 0.45s" />
+                  <!-- right server -->
+                  <rect x="35" y="16" width="24" height="24" rx="3" fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.18)" stroke-width="1.2" />
+                  <rect x="35" y="16" width="24" height="8" rx="3" fill="rgba(255,255,255,0.07)" />
+                  <rect x="35" y="21" width="24" height="3" fill="rgba(255,255,255,0.07)" />
+                  <circle cx="40" cy="20" r="2"
+                    [attr.fill]="svgFill('fullstack','rgba(100,220,100,0.9)','rgba(100,220,100,0.2)')"
+                    style="transition:fill 0.3s ease 0.5s" />
+                  <rect x="37" y="27" [attr.width]="svgW('fullstack', 14)" height="2" rx="1"
+                    fill="rgba(255,255,255,0.25)" style="transition:width 0.35s ease 0.2s" />
+                  <rect x="37" y="31" [attr.width]="svgW('fullstack', 10)" height="2" rx="1"
+                    fill="rgba(255,255,255,0.18)" style="transition:width 0.35s ease 0.28s" />
+                  <rect x="37" y="35" [attr.width]="svgW('fullstack', 12)" height="2" rx="1"
+                    fill="rgba(255,255,255,0.15)" style="transition:width 0.35s ease 0.36s" />
+                  <rect x="40" y="45" width="14" height="2" rx="1" fill="rgba(255,255,255,0.12)" />
+                </svg>
+              </ng-container>
+
+              <!-- AI: neural network -->
+              <ng-container *ngSwitchCase="'ai'">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- connections input → hidden -->
+                  <line x1="10" y1="20" x2="30" y2="12" stroke="rgba(255,255,255,0.2)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.05s" />
+                  <line x1="10" y1="20" x2="30" y2="30" stroke="rgba(255,255,255,0.25)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.1s" />
+                  <line x1="10" y1="20" x2="30" y2="48" stroke="rgba(255,255,255,0.12)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.15s" />
+                  <line x1="10" y1="40" x2="30" y2="12" stroke="rgba(255,255,255,0.12)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.2s" />
+                  <line x1="10" y1="40" x2="30" y2="30" stroke="rgba(255,255,255,0.25)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.25s" />
+                  <line x1="10" y1="40" x2="30" y2="48" stroke="rgba(255,255,255,0.2)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.3s" />
+                  <!-- connections hidden → output -->
+                  <line x1="30" y1="12" x2="50" y2="20" stroke="rgba(255,255,255,0.2)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.35s" />
+                  <line x1="30" y1="12" x2="50" y2="40" stroke="rgba(255,255,255,0.12)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.4s" />
+                  <line x1="30" y1="30" x2="50" y2="20" stroke="rgba(255,255,255,0.25)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.45s" />
+                  <line x1="30" y1="30" x2="50" y2="40" stroke="rgba(255,255,255,0.25)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.5s" />
+                  <line x1="30" y1="48" x2="50" y2="20" stroke="rgba(255,255,255,0.12)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.55s" />
+                  <line x1="30" y1="48" x2="50" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="0.9"
+                    stroke-dasharray="50" [attr.stroke-dashoffset]="svgDash('ai')"
+                    style="transition:stroke-dashoffset 0.35s ease 0.6s" />
+                  <!-- input nodes -->
+                  <circle cx="10" cy="20" r="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)"
+                    stroke-width="1.2" />
+                  <circle cx="10" cy="40" r="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)"
+                    stroke-width="1.2" />
+                  <!-- hidden nodes -->
+                  <circle cx="30" cy="12" r="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)"
+                    stroke-width="1.2" />
+                  <circle cx="30" cy="30" r="5.5"
+                    [attr.fill]="svgFill('ai','rgba(255,255,255,0.22)','rgba(255,255,255,0.07)')"
+                    stroke="rgba(255,255,255,0.35)" stroke-width="1.5" style="transition:fill 0.3s ease 0.3s" />
+                  <circle cx="30" cy="48" r="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)"
+                    stroke-width="1.2" />
+                  <!-- output nodes -->
+                  <circle cx="50" cy="20" r="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)"
+                    stroke-width="1.2" />
+                  <circle cx="50" cy="40" r="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)"
+                    stroke-width="1.2" />
+                </svg>
+              </ng-container>
+
+            </ng-container>
+          </div>
+
+          <div class="role-body">
+            <h3 class="role-title">{{ role.title }}</h3>
+            <p class="role-desc">{{ role.description }}</p>
+          </div>
+          <span class="role-num">0{{ i + 1 }}</span>
         </div>
       </div>
     </div>
+
   </div>
 </section>
