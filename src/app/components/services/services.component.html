@@ -3,16 +3,12 @@
 
     <div class="section-heading">
       <span class="section-label">Services</span>
-      <h2>What We Build</h2>
+      <h2>What I Build</h2>
     </div>
 
     <div class="services-grid">
-      <div
-        *ngFor="let item of services"
-        class="service-card"
-        [class.size-lg]="item.size === 'lg'"
-        [style.--accent]="item.accentColor"
-        [style.--accent-bg]="hexToRgba(item.accentColor, 0.08)"
+      <div *ngFor="let item of services" class="service-card" [class.size-lg]="item.size === 'lg'"
+        [style.--accent]="item.accentColor" [style.--accent-bg]="hexToRgba(item.accentColor, 0.08)"
         [style.--accent-border]="hexToRgba(item.accentColor, 0.25)">
 
         <div class="card-header">
@@ -154,10 +150,7 @@
                   </div>
                 </div>
                 <div class="vis-dash-chart">
-                  <div
-                    class="vis-dash-bar"
-                    *ngFor="let b of item.chartBars; let i = index"
-                    [style.--bh]="b"
+                  <div class="vis-dash-bar" *ngFor="let b of item.chartBars; let i = index" [style.--bh]="b"
                     [style.--i]="i">
                   </div>
                 </div>
