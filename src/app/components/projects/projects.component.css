@@ -470,3 +470,17 @@
     font-size: 1.35rem;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .projects-container {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .section-heading h2 {
+    font-size: 2rem;
+  }
+
+  .card-info {
+    padding: 1rem;
+  }
+}

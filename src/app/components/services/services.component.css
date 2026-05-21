@@ -925,3 +925,18 @@
     font-size: 1.25rem;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .services-container {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .section-heading h2 {
+    font-size: 2rem;
+  }
+
+  .service-card {
+    padding: 1.25rem;
+    min-height: 260px;
+  }
+}

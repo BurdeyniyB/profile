@@ -201,3 +201,19 @@
     padding: 3rem 1.25rem;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .section-heading h2 {
+    font-size: 2rem;
+  }
+  .about-container {
+    padding: 2.5rem 1rem;
+  }
+  .role-icon-wrap {
+    width: 48px;
+    height: 48px;
+  }
+  .role-title {
+    font-size: 13px;
+  }
+}
