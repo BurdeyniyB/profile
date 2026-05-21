@@ -1,0 +1,7 @@
+<h1>I Can Help You With...</h1>
+<section #container class="container">
+  <div *ngFor="let item of positionedItems" class="map-item" [style.top]="item.top" [style.left]="item.left"
+    [style.font-size.px]="item.size" [style.color]="item.color" [style.border-color]="item.color"
+    [style.background-color]="item.bgColor" [style.opacity]="item.opacity" [style.animation-delay]="item.animationDelay"
+    [style.animation-duration]="item.animationDuration">{{ item.name }}</div>
+</section>

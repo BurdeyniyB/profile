@@ -15,6 +15,7 @@ import { ProjectComponent } from "./components/project/project.component";
 import { ContactComponent } from "./components/contact/contact.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { MapComponent } from "./components/map/map.component";
+import { ServicesComponent } from "./components/services/services.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MapComponent } from "./components/map/map.component";
     ContactComponent,
     FooterComponent,
     MapComponent,
+    ServicesComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule],
   bootstrap: [AppComponent],
