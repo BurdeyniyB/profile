@@ -1,70 +1,91 @@
-<section id="contact" class="section">
-  <div class="wrapper">
-    <!-- Left panel -->
-    <div class="left">
-      <div class="glow"></div>
-      <div class="left-content">
-        <h2 class="heading">Tell me about your<br />project</h2>
-        <ul class="perks">
-          <li><span class="check">✓</span> I will respond to you within 12 hours</li>
-          <li><span class="check">✓</span> I'll sign an NDA if requested</li>
-          <li><span class="check">✓</span> Access to dedicated specialist</li>
-        </ul>
-        <div class="email-link">
-          <a href="mailto:borisburdeyniy@gmail.com">borisburdeyniy@gmail.com</a>
+<ng-container *ngIf="config.showContacts">
+  <section id="contact" class="section">
+    <div class="wrapper">
+      <!-- Left panel -->
+      <div class="left">
+        <div class="glow"></div>
+        <div class="left-content">
+          <h2 class="heading">Tell me about your<br />project</h2>
+          <ul class="perks">
+            <li><span class="check">✓</span> I will respond to you within 12 hours</li>
+            <li><span class="check">✓</span> I'll sign an NDA if requested</li>
+            <li><span class="check">✓</span> Access to dedicated specialist</li>
+          </ul>
+          <div class="email-link">
+            <a [href]="'mailto:' + config.contacts.email">{{ config.contacts.email }}</a>
+          </div>
+          <p class="call-text">Always busy and want to book<br />an exact time to call?</p>
+          <button type="button" class="call-btn" (click)="toggleCallMenu()">
+            Book a free call
+          </button>
         </div>
-        <p class="call-text">Always busy and want to book<br />an exact time to call?</p>
-        <a href="https://t.me/bburdeinyi" target="_blank" rel="noopener noreferrer" class="call-btn">
-          Book a free call
+      </div>
+
+      <!-- Right panel -->
+      <form class="right" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+
+        <div class="field-group">
+          <span class="label">Service</span>
+          <div class="chips">
+            <button *ngFor="let s of serviceOptions" type="button" class="chip"
+              [class.chip-active]="selectedService === s" (click)="toggleService(s)">
+              {{ s }}
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="label">Budget</span>
+          <div class="chips">
+            <button *ngFor="let b of budgetOptions" type="button" class="chip" [class.chip-active]="selectedBudget === b"
+              (click)="toggleBudget(b)">
+              {{ b }}
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-wrap">
+            <input type="text" placeholder="Full name*" [(ngModel)]="fullName" name="fullName" class="input"
+              [class.input-error]="errors.fullName" />
+          </div>
+          <div class="input-wrap">
+            <input type="email" placeholder="Email*" [(ngModel)]="email" name="email" class="input"
+              [class.input-error]="errors.email" />
+          </div>
+        </div>
+
+        <textarea placeholder="Project details*" [(ngModel)]="text" name="text" class="textarea"
+          [class.input-error]="errors.text"></textarea>
+
+        <div class="dropzone" [class.dropzone-active]="dragging" (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave()" (drop)="onDrop($event)" (click)="triggerFileInput(fileInput)">
+          <input #fileInput type="file" style="display: none" (change)="onFileChange($event)" />
+          <span class="dropzone-label">{{ fileName || 'Attach a file (optional)' }}</span>
+          <span class="dropzone-hint">{{ file ? 'Click to change' : 'Choose a file or drag and drop here' }}</span>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit inquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="call-overlay" *ngIf="callMenuOpen" (click)="closeCallMenu($event)">
+    <div class="call-card">
+      <button class="call-card-close" (click)="toggleCallMenu()" type="button">
+        <i class="ri-close-line"></i>
+      </button>
+      <p class="call-card-title">How would you like to connect?</p>
+      <div class="call-card-options">
+        <a [href]="'https://wa.me/' + config.contacts.whatsapp" target="_blank" rel="noopener noreferrer" class="call-card-btn wa">
+          <i class="ri-whatsapp-line"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a [href]="'https://t.me/' + config.contacts.telegramBooking" target="_blank" rel="noopener noreferrer" class="call-card-btn tg">
+          <i class="ri-telegram-line"></i>
+          <span>Telegram</span>
         </a>
       </div>
     </div>
-
-    <!-- Right panel -->
-    <form class="right" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
-
-      <div class="field-group">
-        <span class="label">Service</span>
-        <div class="chips">
-          <button *ngFor="let s of serviceOptions" type="button" class="chip"
-            [class.chip-active]="selectedService === s" (click)="toggleService(s)">
-            {{ s }}
-          </button>
-        </div>
-      </div>
-
-      <div class="field-group">
-        <span class="label">Budget</span>
-        <div class="chips">
-          <button *ngFor="let b of budgetOptions" type="button" class="chip" [class.chip-active]="selectedBudget === b"
-            (click)="toggleBudget(b)">
-            {{ b }}
-          </button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-wrap">
-          <input type="text" placeholder="Full name*" [(ngModel)]="fullName" name="fullName" class="input"
-            [class.input-error]="errors.fullName" />
-        </div>
-        <div class="input-wrap">
-          <input type="email" placeholder="Email*" [(ngModel)]="email" name="email" class="input"
-            [class.input-error]="errors.email" />
-        </div>
-      </div>
-
-      <textarea placeholder="Project details*" [(ngModel)]="text" name="text" class="textarea"
-        [class.input-error]="errors.text"></textarea>
-
-      <div class="dropzone" [class.dropzone-active]="dragging" (dragover)="onDragOver($event)"
-        (dragleave)="onDragLeave()" (drop)="onDrop($event)" (click)="triggerFileInput(fileInput)">
-        <input #fileInput type="file" style="display: none" (change)="onFileChange($event)" />
-        <span class="dropzone-label">{{ fileName || 'Attach a file (optional)' }}</span>
-        <span class="dropzone-hint">{{ file ? 'Click to change' : 'Choose a file or drag and drop here' }}</span>
-      </div>
-
-      <button type="submit" class="submit-btn">Submit inquiry</button>
-    </form>
   </div>
-</section>
+</ng-container>

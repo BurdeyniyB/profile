@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AppConfigService } from '../../services/app-config.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,6 +10,8 @@ export class NavComponent {
   @ViewChild('menu') menuRef!: ElementRef<HTMLUListElement>;
 
   menuOpen = false;
+
+  constructor(readonly config: AppConfigService) {}
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {

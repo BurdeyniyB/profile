@@ -9,7 +9,7 @@
     <li><a href="#approach" (click)="closeMenu()">Approach</a></li>
     <li><a href="#services" (click)="closeMenu()">Services</a></li>
     <li><a href="#projects" (click)="closeMenu()">Projects</a></li>
-    <li><a href="#contact" (click)="closeMenu()">Contact</a></li>
+    <li *ngIf="config.showContacts"><a href="#contact" (click)="closeMenu()">Contact</a></li>
   </ul>
 
   <i class="ri-menu-4-line bars" (click)="toggleMenu()"></i>

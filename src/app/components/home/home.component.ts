@@ -6,6 +6,7 @@ import {
   OnDestroy,
 } from "@angular/core";
 import Typed from "typed.js";
+import { AppConfigService } from "../../services/app-config.service";
 
 @Component({
   selector: "app-home",
@@ -16,6 +17,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild("typedEl") typedEl!: ElementRef;
 
   private typed!: Typed;
+
+  constructor(readonly config: AppConfigService) {}
 
   ngAfterViewInit(): void {
     this.typed = new Typed(this.typedEl.nativeElement, {
