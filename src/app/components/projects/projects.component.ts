@@ -36,7 +36,7 @@ export class ProjectsComponent {
         "A full-stack e-commerce platform for an electronics store that combines a customer storefront featuring advanced search, a shopping cart, PayPal/Stripe checkout, and an AI assistant for faster product discovery with a comprehensive admin panel for managing products, orders, discounts, stock, and analytics.",
       fullDescription:
         "Tech.Hub is a full-stack e-commerce web application built for an online electronics store. The client’s goal was to create a complete shopping experience where users can browse products, search and filter the catalog, add items to the cart, apply promo codes, choose delivery options, and complete checkout through credit card or PayPal. The project includes a customer-facing storefront and an admin panel for managing products, orders, discounts, stock status, and sales analytics. One of the main challenges was connecting all parts of the purchase flow into one smooth process: catalog, cart, checkout, payment, order confirmation, and admin order tracking. This was solved by building a structured React interface, an Express/Node.js backend, PostgreSQL database storage, and dynamic UI updates for cart and product data. Additional features include authentication, product CRUD, image upload, PayPal/Stripe payment support, promo code management, order dashboards, charts, and an AI assistant that helps users find relevant products faster.",
-      repo: "ttps://github.com/BurdeyniyB/online-store",
+      repo: "https://github.com/BurdeyniyB/tech.hub",
       technologies: ["React", "Node.js", "PostgreSQL", "Express", "AI Agent"],
       accentColor: "#1b02ff",
       imageCount: 6,
