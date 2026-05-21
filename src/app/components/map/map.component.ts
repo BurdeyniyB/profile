@@ -73,25 +73,54 @@ export class MapComponent implements AfterViewInit {
   ];
 
   positionedItems: PositionedItem[] = [];
+  fieldHeight: number | null = null;
+
+  // max animation displacement — must match moveX/moveY ranges in tryPlace
+  private readonly MAX_MOVE_X = 20;
+  private readonly MAX_MOVE_Y = 12;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     const el = this.containerRef.nativeElement;
-    this.placeItems(el.offsetWidth, el.offsetHeight);
+    const { items, height } = this.fitItems(el.offsetWidth, el.offsetHeight);
+    this.positionedItems = items;
+    this.fieldHeight = height;
     this.cdr.detectChanges();
   }
 
-  // max animation displacement — must match moveX/moveY ranges below
-  private readonly MAX_MOVE_X = 20;
-  private readonly MAX_MOVE_Y = 12;
+  // Grow container height in steps until all items fit without forced overlap
+  private fitItems(
+    cw: number,
+    startH: number,
+  ): { items: PositionedItem[]; height: number } {
+    const STEP = 100;
+    const MAX_GROW = 12;
 
-  private placeItems(cw: number, ch: number): void {
+    for (let i = 0; i <= MAX_GROW; i++) {
+      const ch = startH + i * STEP;
+      const { items, allFit } = this.tryPlace(cw, ch);
+      if (allFit) {
+        return { items, height: ch };
+      }
+    }
+
+    // Last resort: return the tallest attempt
+    const ch = startH + MAX_GROW * STEP;
+    return { items: this.tryPlace(cw, ch).items, height: ch };
+  }
+
+  // Attempt to place all items in cw×ch; returns allFit=false if any item
+  // was force-placed due to exhausting MAX_ATTEMPTS without a clear spot
+  private tryPlace(
+    cw: number,
+    ch: number,
+  ): { items: PositionedItem[]; allFit: boolean } {
     const placed: Rect[] = [];
     const GAP = 10;
     const MAX_ATTEMPTS = 400;
+    let allFit = true;
 
-    // largest items first — harder to fit, must go first
     const order = [...this.items.keys()].sort(
       (a, b) => this.items[b].size - this.items[a].size,
     );
@@ -100,8 +129,7 @@ export class MapComponent implements AfterViewInit {
     for (const i of order) {
       const item = this.items[i];
       const { hw, hh } = this.estimateHalf(item);
-
-      let rect = this.randomRect(hw, hh, cw, ch);
+      let rect: Rect | null = null;
 
       for (let t = 0; t < MAX_ATTEMPTS; t++) {
         const candidate = this.randomRect(hw, hh, cw, ch);
@@ -109,6 +137,11 @@ export class MapComponent implements AfterViewInit {
           rect = candidate;
           break;
         }
+      }
+
+      if (!rect) {
+        allFit = false;
+        rect = this.randomRect(hw, hh, cw, ch);
       }
 
       placed.push(rect);
@@ -128,7 +161,7 @@ export class MapComponent implements AfterViewInit {
       };
     }
 
-    this.positionedItems = result;
+    return { items: result, allFit };
   }
 
   private randomRect(hw: number, hh: number, cw: number, ch: number): Rect {
@@ -147,8 +180,8 @@ export class MapComponent implements AfterViewInit {
     );
   }
 
-  // half-dimensions include max animation displacement so placed rects
-  // reserve the full sweep zone — prevents overlap at any animation frame
+  // half-dimensions include max animation displacement so the placed rect
+  // reserves the full sweep zone — prevents overlap at any animation frame
   private estimateHalf(item: MapItem): { hw: number; hh: number } {
     return {
       hw: (item.name.length * item.size * 0.55 + 40) / 2 + this.MAX_MOVE_X,
