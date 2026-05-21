@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root {
+  --primary-color: hsl(0, 0%, 90%);
+  --primary-color-2: #6d6d6d;
+  --logo-size: 480px;
+}
+
+body {
+  background-color: #0a0a0a;
+  z-index: 1;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 5%;
+}
+
+.SectionTitle {
+  width: 100%;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 50px;
+  background: linear-gradient(90deg, var(--primary-color-2) 40%, var(--primary-color) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,27 @@
+<section id="map" class="map-wrapper">
+  <div class="map-container">
+
+    <div class="section-heading">
+      <span class="section-label">Skills</span>
+      <h2>I Can Help You With</h2>
+    </div>
+
+    <div class="tag-field" #container [style.height.px]="fieldHeight">
+      <div class="tag-field-glow"></div>
+      <div *ngFor="let item of positionedItems"
+           class="skill-tag"
+           [style.top]="item.top"
+           [style.left]="item.left"
+           [style.font-size.px]="item.size"
+           [style.color]="item.color"
+           [style.border-color]="item.borderColor"
+           [style.background-color]="item.bgColor"
+           [style.opacity]="item.opacity"
+           [style.--mx]="item.moveX"
+           [style.--my]="item.moveY"
+           [style.animation-delay]="item.animationDelay"
+           [style.animation-duration]="item.animationDuration">{{ item.name }}</div>
+    </div>
+
+  </div>
+</section>

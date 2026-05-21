@@ -1,0 +1,103 @@
+<div id="projects" class="projects-wrapper">
+  <div class="projects-container">
+
+    <div class="section-heading">
+      <span class="section-label">Work</span>
+      <h2>Selected Projects</h2>
+    </div>
+
+    <div class="projects-grid">
+      <div
+        *ngFor="let item of displayProjects; trackBy: trackById"
+        class="project-card"
+        [attr.data-pid]="item.id"
+        [class.is-expanded]="expandedId === item.id"
+        [class.is-fading]="fadingPartnerId === item.id"
+        [class.is-entering]="enteringPartnerId === item.id"
+        [class.expand-from-right]="expandFromRight && (expandedId === item.id || collapsingId === item.id)"
+        [class.is-collapsing]="collapsingId === item.id"
+        [style.--accent]="item.accentColor"
+        [style.--accent-bg]="hexToRgba(item.accentColor, 0.08)"
+        [style.--accent-border]="hexToRgba(item.accentColor, 0.25)">
+
+        <!-- COLLAPSED -->
+        <div class="card-collapsed" *ngIf="expandedId !== item.id" (click)="toggle(item.id)">
+          <div class="card-thumb">
+            <img [src]="getThumb(item)" [alt]="item.title" loading="lazy">
+            <div class="thumb-overlay"></div>
+          </div>
+          <div class="card-info">
+            <div class="card-meta">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.shortDescription }}</p>
+              <div class="tech-row">
+                <span class="tech-tag" *ngFor="let tech of item.technologies">{{ tech }}</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a
+                class="action-link"
+                [href]="item.repo"
+                target="_blank"
+                rel="noopener noreferrer"
+                (click)="$event.stopPropagation()">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <button class="expand-btn" aria-label="Expand project">
+                <img src="assets/logos/free-icon-font-issue-loupe.svg" alt="" aria-hidden="true" class="expand-icon">
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPANDED -->
+        <div class="card-expanded" *ngIf="expandedId === item.id">
+
+          <div class="expanded-carousel">
+            <img [src]="getCurrentImage(item)" [alt]="item.title">
+            <button class="carousel-btn prev" (click)="prevImage(item.id, $event)" aria-label="Previous image">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next" (click)="nextImage(item.id, $event)" aria-label="Next image">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="carousel-dots">
+              <span
+                *ngFor="let i of imageRange(item)"
+                class="dot"
+                [class.active]="carouselIndex(item.id) === i"
+                (click)="goToImage(item.id, i, $event)">
+              </span>
+            </div>
+          </div>
+
+          <div class="expanded-info">
+            <div class="expanded-header">
+              <h3>{{ item.title }}</h3>
+              <button class="close-btn" (click)="toggle(item.id)" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <p class="expanded-desc">{{ item.fullDescription }}</p>
+            <div class="tech-row">
+              <span class="tech-tag" *ngFor="let tech of item.technologies">{{ tech }}</span>
+            </div>
+            <div class="expanded-links">
+              <a class="link-btn github-btn" [href]="item.repo" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i>
+                GitHub
+              </a>
+              <a *ngIf="item.liveUrl" class="link-btn live-btn" [href]="item.liveUrl" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                Live
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
