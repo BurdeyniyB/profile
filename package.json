@@ -28,6 +28,7 @@
     "@angular-devkit/build-angular": "^15.2.11",
     "@angular/cli": "~15.2.11",
     "@angular/compiler-cli": "^15.2.0",
+    "@ngx-env/builder": "^1.2.3",
     "@types/node": "^18.11.0",
     "typescript": "~4.9.4"
   }
