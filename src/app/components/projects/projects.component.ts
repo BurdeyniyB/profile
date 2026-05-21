@@ -30,24 +30,24 @@ export class ProjectsComponent {
 
   readonly projects: ProjectItem[] = [
     {
-      id: "GPT-trace",
-      title: "GPT Trace",
+      id: "tech-hub",
+      title: "Tech.Hub — Full-Stack E-Commerce Platform",
       shortDescription:
-        "AI-powered crypto analytics with real-time market insights and GPT-driven forecasts.",
+        "A full-stack e-commerce platform for an electronics store that combines a customer storefront featuring advanced search, a shopping cart, PayPal/Stripe checkout, and an AI assistant for faster product discovery with a comprehensive admin panel for managing products, orders, discounts, stock, and analytics.",
       fullDescription:
-        "GPT-Trace is a full-featured AI-powered crypto analytics platform built with Next.js, NestJS, TypeScript, and MongoDB. The platform delivers real-time market data, interactive charts, and GPT-driven price forecasts. It includes user authentication, portfolio tracking, watchlists, and AI-generated market summaries updated on demand.",
-      repo: "https://github.com/BurdeyniyB/GPT-Trace",
-      technologies: ["Next.js", "NestJS", "TypeScript", "MongoDB", "AI/GPT"],
-      accentColor: "#4410FF",
-      imageCount: 5,
+        "Tech.Hub is a full-stack e-commerce web application built for an online electronics store. The client’s goal was to create a complete shopping experience where users can browse products, search and filter the catalog, add items to the cart, apply promo codes, choose delivery options, and complete checkout through credit card or PayPal. The project includes a customer-facing storefront and an admin panel for managing products, orders, discounts, stock status, and sales analytics. One of the main challenges was connecting all parts of the purchase flow into one smooth process: catalog, cart, checkout, payment, order confirmation, and admin order tracking. This was solved by building a structured React interface, an Express/Node.js backend, PostgreSQL database storage, and dynamic UI updates for cart and product data. Additional features include authentication, product CRUD, image upload, PayPal/Stripe payment support, promo code management, order dashboards, charts, and an AI assistant that helps users find relevant products faster.",
+      repo: "ttps://github.com/BurdeyniyB/online-store",
+      technologies: ["React", "Node.js", "PostgreSQL", "Express", "AI Agent"],
+      accentColor: "#1b02ff",
+      imageCount: 6,
     },
     {
       id: "music",
-      title: "Music Platform",
+      title: "Custom Music Streaming Web App",
       shortDescription:
-        "Full-featured music streaming with upload, playback, and artist profiles.",
+        "Full-stack music streaming platform with audio playback, uploads, playlists, search, authentication, real-time features, and scalable backend architecture built with React, TypeScript, Node.js, Express, MongoDB, JWT, and WebSockets.",
       fullDescription:
-        "A comprehensive music streaming platform built with Next.js and NestJS, backed by TypeScript and MongoDB. Features include track upload and streaming, artist profile management, playlist creation, search and discovery, and a responsive audio player. Handles file storage, user authentication, and real-time playback state sync.",
+        "Full-stack music platform designed for streaming, uploading, and managing audio content with a clean and interactive user experience. The application includes music playback, search, playlist organization, secure authentication, and real-time functionality, making it suitable for modern content-driven platforms. This project highlights my ability to build custom web apps with structured frontend architecture, backend APIs, database logic, JWT-based authentication, and scalable real-time features using React, TypeScript, Node.js, Express, MongoDB, and WebSockets.",
       repo: "https://github.com/BurdeyniyB/music-platform-client",
       technologies: ["Next.js", "NestJS", "TypeScript", "MongoDB"],
       accentColor: "#FF025B",
@@ -55,52 +55,64 @@ export class ProjectsComponent {
     },
     {
       id: "store",
-      title: "Online Store",
+      title: "Custom E-Commerce Web App",
       shortDescription:
-        "E-commerce platform with catalog, cart, orders, and admin panel.",
+        "Full-stack e-commerce platform with a React frontend, Node.js/Express backend, PostgreSQL database, product catalog, filters, cart, authentication, order management, inventory tracking, checkout flow, and an admin dashboard.",
       fullDescription:
-        "A complete e-commerce solution — React frontend, Node.js/Express backend, PostgreSQL database. Includes a full product catalog with categories and filters, shopping cart, order management, user authentication, and an admin dashboard. Supports product variants, inventory tracking, and a checkout flow.",
+        "Custom full-stack e-commerce web application designed for managing products, processing orders, and improving the customer shopping experience. The solution includes product listing and filtering, cart and checkout pages, authentication, and an admin-style order management area for controlling store operations.\nThis portfolio project reflects my ability to build scalable web apps with a strong product structure, user-focused flows, and functionality ready for backend logic, payment integrations, inventory handling, and external API connections.",
       repo: "https://github.com/BurdeyniyB/online-store",
       technologies: ["React", "Node.js", "PostgreSQL", "Express"],
-      accentColor: "#1EF2BD",
+      accentColor: "#c81ef2",
       imageCount: 6,
     },
     {
-      id: "crisp",
-      title: "Crisp",
+      id: "GPT-trace",
+      title: "GPT Trace",
       shortDescription:
-        "Modern online fashion store with trends, filters, and exclusive deals.",
+        "Modern custom landing website with a clean responsive interface, conversion-focused structure, call-to-action sections, polished visual blocks, and user-friendly content flow designed to promote a product or service, improve brand visibility, and generate leads.",
       fullDescription:
-        "Crisp is a modern online fashion store offering the latest trends and exclusive deals. Built with React and Node.js with a MongoDB backend. The storefront includes dynamic filtering by size, color, and category, a wishlist, a shopping cart, and a streamlined checkout. Design emphasizes clean typography and product photography.",
+        "Modern custom landing website designed to promote a product or service with a clean interface and conversion-focused structure. The project includes responsive sections, call-to-action elements, clear content flow, and visually polished blocks created to support marketing goals and improve user engagement. This portfolio project highlights my ability to build custom websites with modern design, structured layouts, and user-friendly experiences tailored for business presentation, brand visibility, and lead generation.",
+      repo: "https://github.com/BurdeyniyB/GPT-Trace",
+      technologies: ["Next.js", "NestJS", "TypeScript", "MongoDB", "AI/GPT"],
+      accentColor: "#4410FF",
+      imageCount: 5,
+    },
+    {
+      id: "fashion-store",
+      title: "Custom Online Fashion Store",
+      shortDescription:
+        "Custom fashion e-commerce website with a modern storefront, product listings, category browsing, promotional banners, and conversion-focused UI designed for online retail, with a scalable structure ready for cart, payments, user accounts, product management, and API integrations.",
+      fullDescription:
+        "Custom fashion e-commerce website designed to showcase products, promotions, and a clean online shopping experience. The project includes a modern storefront layout, product listing sections, category-based browsing, promotional banners, and conversion-focused UI blocks tailored for online retail. This project demonstrates my ability to create polished custom web interfaces for e-commerce brands, with scalable structure ready for features such as product management, shopping cart logic, user accounts, payment flows, and third-party API integrations.",
       repo: "https://github.com/BurdeyniyB/Crisp",
       technologies: ["React", "Node.js", "MongoDB"],
       accentColor: "#F2994A",
       imageCount: 6,
     },
     {
-      id: "findtrend",
-      title: "Findtrend",
+      id: "find-trend",
+      title: "Custom Trend Aggregation Web App",
       shortDescription:
-        "Aggregate your favorite websites and stay updated on trends in one place.",
+        "Custom SaaS-style web app for organizing trend-related content in one clean interface, with responsive design, clear navigation, pricing sections, and structure ready for accounts, subscriptions, saved collections, and API integrations.",
       fullDescription:
-        "Findtrend is a personal dashboard that helps you gather all your favorite websites in one place and stay updated on trending content. Built with React and Firebase, it allows users to create custom link collections, categorize websites, and receive trend notifications. Features drag-and-drop organization, custom categories, and a clean minimalist interface.",
+        "Custom SaaS-style web application for aggregating and organizing trend-related content in one place. This project was designed to help users reduce browser tab overload and manage relevant sources through a clean, structured product interface. The solution includes a modern responsive layout, clear navigation, reusable UI sections, pricing blocks, and a scalable product structure suitable for startup platforms and content-driven tools. Instead of presenting it as a simple landing page, this project showcases how I build custom web applications with a strong product mindset, clean user flows, and architecture ready for backend logic, user accounts, saved collections, subscriptions, and third-party API integrations.",
       repo: "https://github.com/BurdeyniyB/Findtrend",
       technologies: ["React", "Firebase"],
       accentColor: "#EBD803",
       imageCount: 5,
     },
-    {
-      id: "quiz",
-      title: "Quiz App",
-      shortDescription:
-        "Interactive quiz with multiple question types, scoring, and results review.",
-      fullDescription:
-        "An interactive quiz application built with React and TypeScript. Supports multiple question types: single choice, multiple choice, true/false, and open-ended. Features include a countdown timer, score tracking, per-question result breakdown, answer review mode, and a configurable question engine driven by a simple JSON format.",
-      repo: "https://github.com/BurdeyniyB/Quiz",
-      technologies: ["React", "TypeScript"],
-      accentColor: "#e124fa",
-      imageCount: 5,
-    },
+    // {
+    //   id: "quiz",
+    //   title: "Quiz App",
+    //   shortDescription:
+    //     "Interactive quiz with multiple question types, scoring, and results review.",
+    //   fullDescription:
+    //     "An interactive quiz application built with React and TypeScript. Supports multiple question types: single choice, multiple choice, true/false, and open-ended. Features include a countdown timer, score tracking, per-question result breakdown, answer review mode, and a configurable question engine driven by a simple JSON format.",
+    //   repo: "https://github.com/BurdeyniyB/Quiz",
+    //   technologies: ["React", "TypeScript"],
+    //   accentColor: "#e124fa",
+    //   imageCount: 5,
+    // },
   ];
 
   trackById(_: number, item: ProjectItem): string {
@@ -159,7 +171,7 @@ export class ProjectsComponent {
               card.style.transition = "";
             }
           },
-          { once: true }
+          { once: true },
         );
       });
   }
@@ -212,7 +224,7 @@ export class ProjectsComponent {
     this.animating = true;
     const partnerId = this.partnerIdFor(id);
     this.fadingPartnerId = partnerId; // y fades out (220ms)
-    this.collapsingId = id;           // x shrinks (320ms)
+    this.collapsingId = id; // x shrinks (320ms)
 
     setTimeout(() => {
       this.collapsingId = null;
@@ -227,7 +239,9 @@ export class ProjectsComponent {
           this.animating = false;
           if (partnerId) {
             this.enteringPartnerId = partnerId;
-            setTimeout(() => { this.enteringPartnerId = null; }, FADE_IN);
+            setTimeout(() => {
+              this.enteringPartnerId = null;
+            }, FADE_IN);
           }
         }, FLIP_MS);
       });

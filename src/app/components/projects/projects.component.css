@@ -186,6 +186,17 @@
   background: var(--accent-bg);
 }
 
+.expand-icon {
+  width: 16px;
+  height: 16px;
+  filter: invert(1) opacity(0.38);
+  transition: filter 0.15s;
+}
+
+.expand-btn:hover .expand-icon {
+  filter: invert(1) opacity(1);
+}
+
 /* ─── EXPANDED ─── */
 .card-expanded {
   display: grid;
