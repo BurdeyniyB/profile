@@ -1,0 +1,204 @@
+<section id="services" class="services-wrapper">
+  <div class="services-container">
+
+    <div class="section-heading">
+      <span class="section-label">Services</span>
+      <h2>What We Build</h2>
+    </div>
+
+    <div class="services-grid">
+      <div
+        *ngFor="let item of services"
+        class="service-card"
+        [class.size-lg]="item.size === 'lg'"
+        [style.--accent]="item.accentColor"
+        [style.--accent-bg]="hexToRgba(item.accentColor, 0.08)"
+        [style.--accent-border]="hexToRgba(item.accentColor, 0.25)">
+
+        <div class="card-header">
+          <span class="card-number">{{ item.number }}</span>
+          <span class="card-category">{{ item.category }}</span>
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">{{ item.title }}</h3>
+          <p class="card-subtitle">{{ item.subtitle }}</p>
+          <p class="card-desc">{{ item.description }}</p>
+          <div class="card-tags">
+            <span class="tag" *ngFor="let t of item.tags">{{ t }}</span>
+          </div>
+        </div>
+
+        <div class="card-visual">
+          <ng-container [ngSwitch]="item.id">
+
+            <!-- 01 Landing: browser wireframe -->
+            <ng-container *ngSwitchCase="'landing'">
+              <div class="vis-browser">
+                <div class="vis-browser-bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="vis-browser-body">
+                  <div class="vis-lp-h1"></div>
+                  <div class="vis-lp-h2"></div>
+                  <div class="vis-lp-btn"></div>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- 02 E-commerce: product grid + cart -->
+            <ng-container *ngSwitchCase="'ecommerce'">
+              <div class="vis-shop">
+                <div class="vis-cart-pill">
+                  <span class="vis-cart-icon"></span>
+                  <span class="vis-cart-num">3</span>
+                </div>
+                <div class="vis-product-grid">
+                  <div class="vis-product" *ngFor="let p of ecomProducts">
+                    <div class="vis-product-img"></div>
+                    <div class="vis-product-name"></div>
+                    <div class="vis-product-price"></div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- 03 Corporate: org chart nodes -->
+            <ng-container *ngSwitchCase="'corporate'">
+              <div class="vis-org">
+                <div class="vis-org-root"></div>
+                <div class="vis-org-lines">
+                  <div class="vis-org-branch">
+                    <div class="vis-org-node"></div>
+                  </div>
+                  <div class="vis-org-branch vis-org-branch--center">
+                    <div class="vis-org-node"></div>
+                  </div>
+                  <div class="vis-org-branch">
+                    <div class="vis-org-node"></div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- 04 Portfolio: profile card -->
+            <ng-container *ngSwitchCase="'portfolio'">
+              <div class="vis-profile">
+                <div class="vis-avatar"></div>
+                <div class="vis-profile-info">
+                  <div class="vis-pi-name"></div>
+                  <div class="vis-pi-role"></div>
+                  <div class="vis-pi-socials">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- 05 Promo: pulsing badge -->
+            <ng-container *ngSwitchCase="'promo'">
+              <div class="vis-promo">
+                <div class="vis-promo-ring vis-promo-ring--outer"></div>
+                <div class="vis-promo-ring vis-promo-ring--inner"></div>
+                <div class="vis-promo-core">
+                  <span class="vis-promo-pct">-30%</span>
+                  <span class="vis-promo-label">SALE</span>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- 06 Media: article list -->
+            <ng-container *ngSwitchCase="'media'">
+              <div class="vis-media">
+                <div class="vis-article">
+                  <div class="vis-art-cat">TECH</div>
+                  <div class="vis-art-lines">
+                    <div class="vis-art-title"></div>
+                    <div class="vis-art-exc vis-art-exc--long"></div>
+                    <div class="vis-art-exc"></div>
+                  </div>
+                </div>
+                <div class="vis-article">
+                  <div class="vis-art-cat">BIZ</div>
+                  <div class="vis-art-lines">
+                    <div class="vis-art-title vis-art-title--sm"></div>
+                    <div class="vis-art-exc vis-art-exc--long"></div>
+                    <div class="vis-art-exc vis-art-exc--med"></div>
+                  </div>
+                </div>
+                <div class="vis-article vis-article--last">
+                  <div class="vis-art-cat">DSGN</div>
+                  <div class="vis-art-lines">
+                    <div class="vis-art-title"></div>
+                    <div class="vis-art-exc"></div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- 07 SaaS: dashboard + bar chart -->
+            <ng-container *ngSwitchCase="'saas'">
+              <div class="vis-dash">
+                <div class="vis-dash-metrics">
+                  <div class="vis-metric">
+                    <span class="vis-metric-val">2.4k</span>
+                    <div class="vis-metric-lbl"></div>
+                  </div>
+                  <div class="vis-metric">
+                    <span class="vis-metric-val vis-metric-up">↑ 94%</span>
+                    <div class="vis-metric-lbl"></div>
+                  </div>
+                  <div class="vis-metric">
+                    <span class="vis-metric-val">$18k</span>
+                    <div class="vis-metric-lbl"></div>
+                  </div>
+                </div>
+                <div class="vis-dash-chart">
+                  <div
+                    class="vis-dash-bar"
+                    *ngFor="let b of item.chartBars; let i = index"
+                    [style.--bh]="b"
+                    [style.--i]="i">
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- 08 B2B: portal UI -->
+            <ng-container *ngSwitchCase="'b2b'">
+              <div class="vis-portal">
+                <div class="vis-portal-nav">
+                  <div class="vis-pnav-item vis-pnav-active"></div>
+                  <div class="vis-pnav-item"></div>
+                  <div class="vis-pnav-item"></div>
+                  <div class="vis-pnav-item"></div>
+                  <div class="vis-pnav-item"></div>
+                </div>
+                <div class="vis-portal-body">
+                  <div class="vis-pb-row">
+                    <div class="vis-pb-label"></div>
+                    <span class="vis-pb-badge vis-pb-admin">Admin</span>
+                  </div>
+                  <div class="vis-pb-row">
+                    <div class="vis-pb-label vis-pb-label--lg"></div>
+                    <span class="vis-pb-badge vis-pb-user">User</span>
+                  </div>
+                  <div class="vis-pb-row">
+                    <div class="vis-pb-label vis-pb-label--sm"></div>
+                    <span class="vis-pb-badge vis-pb-view">View</span>
+                  </div>
+                  <div class="vis-pb-progress">
+                    <div class="vis-pb-fill" style="--p: 72%"></div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+          </ng-container>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
