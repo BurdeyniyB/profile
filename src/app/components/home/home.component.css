@@ -1,3 +1,7 @@
+br {
+  line-height: 3;
+}
+
 .header-wrapper {
   width: 100%;
   min-height: 100vh;
@@ -74,7 +78,9 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .header-content .social i:hover {
@@ -95,7 +101,10 @@
   font-weight: 500;
   background: transparent;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s,
+    background 0.15s;
   margin-top: 4px;
 }
 
@@ -142,7 +151,11 @@
   position: absolute;
   inset: -1px;
   border-radius: 50%;
-  background: conic-gradient(from var(--angle), transparent 50%, var(--primary-color-2));
+  background: conic-gradient(
+    from var(--angle),
+    transparent 50%,
+    var(--primary-color-2)
+  );
 }
 
 .border-animation::before {
@@ -190,12 +203,21 @@
     align-items: center;
     text-align: center;
   }
+  .header-content p {
+    text-align: left;
+  }
 }
 
 @media screen and (max-width: 900px) {
-  .header-content h5 { font-size: 11px; }
-  .header-content h1 { font-size: 52px; }
-  .header-content p { font-size: 14px; }
+  .header-content h5 {
+    font-size: 11px;
+  }
+  .header-content h1 {
+    font-size: 52px;
+  }
+  .header-content p {
+    font-size: 14px;
+  }
 
   .header-image img {
     width: calc(var(--logo-size) - 200px);
@@ -212,13 +234,21 @@
     padding-top: 32px;
     padding-bottom: 32px;
   }
-  .header-content h1 { font-size: 40px; }
-  .header-content p { font-size: 13px; }
+  .header-content h1 {
+    font-size: 40px;
+  }
+  .header-content p {
+    font-size: 13px;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  .header-content h1 { font-size: 30px; }
-  .header-content h5 { font-size: 10px; }
+  .header-content h1 {
+    font-size: 30px;
+  }
+  .header-content h5 {
+    font-size: 10px;
+  }
   .header-image img {
     width: calc(var(--logo-size) - 320px);
     height: calc(var(--logo-size) - 320px);

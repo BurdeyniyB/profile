@@ -82,10 +82,14 @@ export class MapComponent implements AfterViewInit {
     this.cdr.detectChanges();
   }
 
+  // max animation displacement — must match moveX/moveY ranges below
+  private readonly MAX_MOVE_X = 20;
+  private readonly MAX_MOVE_Y = 12;
+
   private placeItems(cw: number, ch: number): void {
     const placed: Rect[] = [];
-    const GAP = 14;
-    const MAX_ATTEMPTS = 300;
+    const GAP = 10;
+    const MAX_ATTEMPTS = 400;
 
     // largest items first — harder to fit, must go first
     const order = [...this.items.keys()].sort(
@@ -117,8 +121,8 @@ export class MapComponent implements AfterViewInit {
         opacity: this.computeOpacity(item.size),
         bgColor: this.hexToRgba(item.color, 0.07),
         borderColor: this.hexToRgba(item.color, 0.28),
-        moveX: `${(sign() * (8 + Math.random() * 14)).toFixed(1)}px`,
-        moveY: `${(sign() * (5 + Math.random() * 9)).toFixed(1)}px`,
+        moveX: `${(sign() * (6 + Math.random() * (this.MAX_MOVE_X - 6))).toFixed(1)}px`,
+        moveY: `${(sign() * (4 + Math.random() * (this.MAX_MOVE_Y - 4))).toFixed(1)}px`,
         animationDelay: `${+(Math.random() * 4).toFixed(2)}s`,
         animationDuration: `${+(5 + Math.random() * 4).toFixed(2)}s`,
       };
@@ -143,11 +147,12 @@ export class MapComponent implements AfterViewInit {
     );
   }
 
-  // rough estimate of half-dimensions based on font size and text length
+  // half-dimensions include max animation displacement so placed rects
+  // reserve the full sweep zone — prevents overlap at any animation frame
   private estimateHalf(item: MapItem): { hw: number; hh: number } {
     return {
-      hw: (item.name.length * item.size * 0.55 + 40) / 2,
-      hh: (item.size * 1.4 + 20) / 2,
+      hw: (item.name.length * item.size * 0.55 + 40) / 2 + this.MAX_MOVE_X,
+      hh: (item.size * 1.4 + 20) / 2 + this.MAX_MOVE_Y,
     };
   }
 
