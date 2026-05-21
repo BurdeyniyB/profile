@@ -1,37 +1,129 @@
-.container {
+.map-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Heading (matches about / services / projects pattern) ─── */
+.section-heading {
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.5rem;
+}
+
+.section-heading h2 {
+  font-size: 4rem;
+  font-weight: 520;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Tag field ─── */
+.tag-field {
   position: relative;
   width: 100%;
-  height: 70vh;
+  height: 65vh;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.01);
 }
 
-h1 {
-  text-align: center;
-  color: white;
-}
-
-.map-item {
+.tag-field::before,
+.tag-field::after {
+  content: '';
   position: absolute;
-  font-weight: 900;
-  padding: 10px 20px;
+  left: 0;
+  right: 0;
+  height: 110px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tag-field::before {
+  top: 0;
+  background: linear-gradient(to bottom, #0a0a0a 0%, transparent 100%);
+}
+
+.tag-field::after {
+  bottom: 0;
+  background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+}
+
+.tag-field-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(30, 242, 189, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Skill tags ─── */
+.skill-tag {
+  position: absolute;
+  padding: 6px 14px;
+  border-radius: 100px;
   border: 1px solid;
-  border-radius: 15px;
   white-space: nowrap;
   transform: translate(-50%, -50%);
   animation: float ease-in-out infinite;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: default;
+  transition: opacity 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
+  z-index: 1;
+}
+
+.skill-tag:hover {
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) scale(1.06);
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) translateY(0px);
+  0%   { transform: translate(-50%, -50%) translate(0px, 0px); }
+  20%  { transform: translate(-50%, -50%) translate(var(--mx), calc(var(--my) * 0.3)); }
+  45%  { transform: translate(-50%, -50%) translate(calc(var(--mx) * 0.2), var(--my)); }
+  70%  { transform: translate(-50%, -50%) translate(calc(var(--mx) * -0.6), calc(var(--my) * 0.5)); }
+  100% { transform: translate(-50%, -50%) translate(0px, 0px); }
+}
+
+/* ─── Responsive ─── */
+@media screen and (max-width: 950px) {
+  .map-container {
+    padding: 3rem 1rem;
   }
-  50% {
-    transform: translate(-50%, -50%) translateY(-8px);
+
+  .tag-field {
+    height: 100vh;
   }
 }
 
-@media screen and (max-width: 950px) {
-  .container {
-    height: 100vh;
+@media screen and (max-width: 768px) {
+  .section-heading h2 {
+    font-size: 2.5rem;
   }
 }

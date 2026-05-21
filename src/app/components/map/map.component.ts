@@ -24,6 +24,9 @@ interface PositionedItem extends MapItem {
   left: string;
   opacity: number;
   bgColor: string;
+  borderColor: string;
+  moveX: string;
+  moveY: string;
   animationDelay: string;
   animationDuration: string;
 }
@@ -106,14 +109,18 @@ export class MapComponent implements AfterViewInit {
 
       placed.push(rect);
 
+      const sign = () => (Math.random() > 0.5 ? 1 : -1);
       result[i] = {
         ...item,
         top: `${((rect.cy / ch) * 100).toFixed(2)}%`,
         left: `${((rect.cx / cw) * 100).toFixed(2)}%`,
         opacity: this.computeOpacity(item.size),
-        bgColor: this.hexToRgba(item.color, 0.2),
-        animationDelay: `${+(Math.random() * 3).toFixed(2)}s`,
-        animationDuration: `${+(3 + Math.random() * 2).toFixed(2)}s`,
+        bgColor: this.hexToRgba(item.color, 0.07),
+        borderColor: this.hexToRgba(item.color, 0.28),
+        moveX: `${(sign() * (8 + Math.random() * 14)).toFixed(1)}px`,
+        moveY: `${(sign() * (5 + Math.random() * 9)).toFixed(1)}px`,
+        animationDelay: `${+(Math.random() * 4).toFixed(2)}s`,
+        animationDuration: `${+(5 + Math.random() * 4).toFixed(2)}s`,
       };
     }
 
@@ -146,9 +153,9 @@ export class MapComponent implements AfterViewInit {
 
   private computeOpacity(size: number): number {
     if (size >= 28) return 0.9;
-    if (size >= 22) return 0.7;
-    if (size >= 16) return 0.5;
-    return 0.3;
+    if (size >= 22) return 0.8;
+    if (size >= 16) return 0.7;
+    return 0.6;
   }
 
   private hexToRgba(hex: string, alpha: number): string {
