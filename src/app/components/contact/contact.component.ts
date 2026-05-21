@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ContactService } from "../../services/contact.service";
+import { AppConfigService } from "../../services/app-config.service";
 
 const SERVICES = ["Web Development", "Frontend", "Backend / API", "Consulting"];
 const BUDGETS = ["Less than $100", "$100 – $250", "More than $250"];
@@ -23,8 +24,9 @@ export class ContactComponent {
   dragging = false;
   errors = { fullName: false, email: false, text: false };
   fileName = "";
+  callMenuOpen = false;
 
-  constructor(private contactService: ContactService) {}
+  constructor(private contactService: ContactService, readonly config: AppConfigService) {}
 
   toggleService(s: string): void {
     this.selectedService = this.selectedService === s ? null : s;
@@ -32,6 +34,16 @@ export class ContactComponent {
 
   toggleBudget(b: string): void {
     this.selectedBudget = this.selectedBudget === b ? null : b;
+  }
+
+  toggleCallMenu(): void {
+    this.callMenuOpen = !this.callMenuOpen;
+  }
+
+  closeCallMenu(event: MouseEvent): void {
+    if ((event.target as HTMLElement).classList.contains('call-overlay')) {
+      this.callMenuOpen = false;
+    }
   }
 
   onFileChange(event: Event): void {

@@ -11,7 +11,7 @@
         <a href="#approach">Approach</a>
         <a href="#services">Services</a>
         <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact" *ngIf="config.showContacts">Contact</a>
       </nav>
     </div>
 
@@ -19,14 +19,14 @@
 
     <div class="bottom">
       <span class="copy">© 2025 Borys Burdeinyi. All rights reserved.</span>
-      <div class="socials">
-        <a href="https://t.me/Raikern" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+      <div class="socials" *ngIf="config.showContacts">
+        <a [href]="'https://t.me/' + config.contacts.telegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
           <i class="ri-telegram-line"></i>
         </a>
-        <a href="https://wa.me/380973431619" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <a [href]="'https://wa.me/' + config.contacts.whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
           <i class="ri-whatsapp-line"></i>
         </a>
-        <a href="mailto:borisburdeyniy@gmail.com" aria-label="Email">
+        <a [href]="'mailto:' + config.contacts.email" aria-label="Email">
           <i class="ri-mail-line"></i>
         </a>
       </div>
