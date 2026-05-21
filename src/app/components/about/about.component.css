@@ -124,9 +124,18 @@
   border: 1px solid rgba(255, 255, 255, 0.07);
   flex-shrink: 0;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition:
     background 0.2s,
     border-color 0.2s;
+}
+
+.role-icon-wrap svg {
+  width: 95%;
+  height: 95%;
+  display: block;
 }
 
 .role-card:hover .role-icon-wrap {
