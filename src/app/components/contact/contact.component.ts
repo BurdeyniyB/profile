@@ -1,28 +1,28 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ContactService } from '../../services/contact.service';
+import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { ContactService } from "../../services/contact.service";
 
-const SERVICES = ['Web Development', 'Mobile App', 'Backend / API', 'Consulting'];
-const BUDGETS = ['Less than $5K', '$5K – $20K', 'More than $20K'];
+const SERVICES = ["Web Development", "Frontend", "Backend / API", "Consulting"];
+const BUDGETS = ["Less than $100", "$100 – $250", "More than $250"];
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css'],
+  selector: "app-contact",
+  templateUrl: "./contact.component.html",
+  styleUrls: ["./contact.component.css"],
 })
 export class ContactComponent {
   readonly serviceOptions = SERVICES;
   readonly budgetOptions = BUDGETS;
 
-  fullName = '';
-  email = '';
-  text = '';
+  fullName = "";
+  email = "";
+  text = "";
   selectedService: string | null = null;
   selectedBudget: string | null = null;
   file: File | null = null;
   dragging = false;
   errors = { fullName: false, email: false, text: false };
-  fileName = '';
+  fileName = "";
 
   constructor(private contactService: ContactService) {}
 
@@ -67,19 +67,19 @@ export class ContactComponent {
 
   async onSubmit(form: NgForm): Promise<void> {
     this.errors = {
-      fullName: this.fullName.trim() === '',
-      email: this.email.trim() === '',
-      text: this.text.trim() === '',
+      fullName: this.fullName.trim() === "",
+      email: this.email.trim() === "",
+      text: this.text.trim() === "",
     };
     if (Object.values(this.errors).includes(true)) return;
 
     const formData = new FormData();
-    formData.append('fullName', this.fullName);
-    formData.append('email', this.email);
-    formData.append('text', this.text);
-    if (this.selectedService) formData.append('service', this.selectedService);
-    if (this.selectedBudget) formData.append('budget', this.selectedBudget);
-    if (this.file) formData.append('file', this.file);
+    formData.append("fullName", this.fullName);
+    formData.append("email", this.email);
+    formData.append("text", this.text);
+    if (this.selectedService) formData.append("service", this.selectedService);
+    if (this.selectedBudget) formData.append("budget", this.selectedBudget);
+    if (this.file) formData.append("file", this.file);
 
     this.contactService.sendMessage(formData).subscribe({
       next: () => this.clearForm(form),
@@ -88,13 +88,13 @@ export class ContactComponent {
   }
 
   private clearForm(form: NgForm): void {
-    this.fullName = '';
-    this.email = '';
-    this.text = '';
+    this.fullName = "";
+    this.email = "";
+    this.text = "";
     this.selectedService = null;
     this.selectedBudget = null;
     this.file = null;
-    this.fileName = '';
+    this.fileName = "";
     form.resetForm();
   }
 }

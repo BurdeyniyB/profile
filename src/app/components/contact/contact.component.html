@@ -14,7 +14,7 @@
           <a href="mailto:borisburdeyniy@gmail.com">borisburdeyniy@gmail.com</a>
         </div>
         <p class="call-text">Always busy and want to book<br />an exact time to call?</p>
-        <a href="https://t.me/Raikern" target="_blank" rel="noopener noreferrer" class="call-btn">
+        <a href="https://t.me/bburdeinyi" target="_blank" rel="noopener noreferrer" class="call-btn">
           Book a free call
         </a>
       </div>
@@ -26,10 +26,8 @@
       <div class="field-group">
         <span class="label">Service</span>
         <div class="chips">
-          <button *ngFor="let s of serviceOptions" type="button"
-                  class="chip"
-                  [class.chip-active]="selectedService === s"
-                  (click)="toggleService(s)">
+          <button *ngFor="let s of serviceOptions" type="button" class="chip"
+            [class.chip-active]="selectedService === s" (click)="toggleService(s)">
             {{ s }}
           </button>
         </div>
@@ -38,10 +36,8 @@
       <div class="field-group">
         <span class="label">Budget</span>
         <div class="chips">
-          <button *ngFor="let b of budgetOptions" type="button"
-                  class="chip"
-                  [class.chip-active]="selectedBudget === b"
-                  (click)="toggleBudget(b)">
+          <button *ngFor="let b of budgetOptions" type="button" class="chip" [class.chip-active]="selectedBudget === b"
+            (click)="toggleBudget(b)">
             {{ b }}
           </button>
         </div>
@@ -49,27 +45,20 @@
 
       <div class="row">
         <div class="input-wrap">
-          <input type="text" placeholder="Full name*"
-                 [(ngModel)]="fullName" name="fullName"
-                 class="input" [class.input-error]="errors.fullName" />
+          <input type="text" placeholder="Full name*" [(ngModel)]="fullName" name="fullName" class="input"
+            [class.input-error]="errors.fullName" />
         </div>
         <div class="input-wrap">
-          <input type="email" placeholder="Email*"
-                 [(ngModel)]="email" name="email"
-                 class="input" [class.input-error]="errors.email" />
+          <input type="email" placeholder="Email*" [(ngModel)]="email" name="email" class="input"
+            [class.input-error]="errors.email" />
         </div>
       </div>
 
-      <textarea placeholder="Project details*"
-                [(ngModel)]="text" name="text"
-                class="textarea" [class.input-error]="errors.text"></textarea>
+      <textarea placeholder="Project details*" [(ngModel)]="text" name="text" class="textarea"
+        [class.input-error]="errors.text"></textarea>
 
-      <div class="dropzone"
-           [class.dropzone-active]="dragging"
-           (dragover)="onDragOver($event)"
-           (dragleave)="onDragLeave()"
-           (drop)="onDrop($event)"
-           (click)="triggerFileInput(fileInput)">
+      <div class="dropzone" [class.dropzone-active]="dragging" (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()" (drop)="onDrop($event)" (click)="triggerFileInput(fileInput)">
         <input #fileInput type="file" style="display: none" (change)="onFileChange($event)" />
         <span class="dropzone-label">{{ fileName || 'Attach a file (optional)' }}</span>
         <span class="dropzone-hint">{{ file ? 'Click to change' : 'Choose a file or drag and drop here' }}</span>
